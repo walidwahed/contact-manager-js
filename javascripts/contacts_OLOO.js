@@ -249,7 +249,7 @@ var ContactsManager = {
     var filtered = [];
 
     this.contactsCache.forEach(function(contact) {
-      if (this.activeTags.every(function(tag) { return contact.tags.indexOf(tag) >= 0; })) {
+      if (this.activeTags.some(function(tag) { return contact.tags.indexOf(tag) >= 0; })) {
       filtered.push(contact);
       }
     }, this);

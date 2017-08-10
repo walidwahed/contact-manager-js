@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Contact Manager</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Contact Manager</h1>
+      <h2>Using Localstorage, Handlebars, and jQuery</h2>
+    </header>
+    <main>
+      <section id="contacts_view">
+        <h2>Contacts</h2>
+        <div id="action">
+          <a href="#" class="button add">Add Contact</a>
+          <input type="search" placeholder="Search" />
+        </div>
+        <div id="contacts_container">
+          <ul id="tag_list">
+            <script id="tags_template" type="text/x-handlebars">
+            {{#each tags}}
+              {{#if active}}
+              <li class="button tag active">{{tag}}</li>
+              {{else}}
+              <li class="button tag">{{tag}}</li>
+              {{/if}}
+            {{/each}}
+            </script>
+          </ul>
+          <ul id="contacts">
+            <script id="contact_template" type="text/x-handlebars">
+              {{#each contacts}}
+              <li class="contact" data-id="{{id}}">
+                <h2>{{name}}</h2>
+                <dl>
+                  <dt>Phone Number:</dt>
+                  <dd>{{phone}}</dd>
+                  <dt>Email:</dt>
+                  <dd>{{email}}</dd>
+                  <dt>Tags:</dt>
+                  <dd>{{tags}}</dd>
+                </dl>
+                <a href="#" class="button edit">Edit</a>
+                <a href="#" class="button delete">Delete</a>
+              </li>
+              {{/each}}
+            </script>
+          </ul>
+          <div id="no_contacts" class="message">
+            <p>There are no contacts.</p>
+            <p><a href="#" class="button add">Add Contact</a></p>
+          </div>
+          <div id="no_match" class="message">
+            <script id="match_template" type="text/x-handlebars">
+              <p>There are no contacts
+              {{#if tags}}
+              with tags <strong>{{tags}}</strong>
+              {{/if}}
+              {{#if search}}
+              starting with <strong>{{search}}</strong>
+              {{/if}}
+              </p>
+            </script>
+          </div>
+        </div>
+      </section>
+      <section id="update_contact">
+        <h2>Contact</h2>
+        <form method="post">
+          <fieldset>
+            <dl>
+              <dt><label for="name">Full name:</label></dt><!--
+              --><dd><input type="text" id="name" name="name" /></dd>
+              <dd id="name_error" class="error">
+                <p>Please enter a name</p>
+              </dd>
+            </dl>
+            <dl>
+              <dt><label for="email">Email address:</label></dt><!--
+              --><dd><input type="email" id="email" name="email" /></dd>
+              <dd id="email_error" class="error">
+                <p>Please enter a valid email address</p>
+              </dd>
+            </dl>
+            <dl>
+              <dt><label for="phone">Telephone number:</label></dt><!--
+              --><dd><input type="text" id="phone" name="phone" /></dd>
+              <dd id="phone_error" class="error">
+                <p>Please enter a phone number</p>
+              </dd>
+            </dl>
+            <dl>
+              <dt><label for="tags">Tags:</label></dt><!--
+              --><dd><input type="text" id="tags" name="tags" placeholder="friend, school, work, emergency" /></dd>
+              <dd id="tags_error" class="error">
+                <p>Please enter at least one tag</p>
+              </dd>
+            </dl>
+            <dl>
+              <dt></dt>
+              <dd class="submission">
+                <input type="submit" value="Submit" class="button submit" /><!--
+                --><input type="reset" value="Cancel" class="button cancel"/>
+              </dd>
+            </dl>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>For interesting facts check out <a href="https://www.wikipedia.org">Wikipedia</a></p>
+    </footer>
+    <script src="javascripts/contacts_OLOO.js"></script>
+  </body>
+</html>
